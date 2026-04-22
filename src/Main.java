@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class Main {
+public class EstadisticaCiclista {
 
     public static void main(String[] args) {
 
@@ -13,6 +13,7 @@ public class Main {
 
         int opcion;
 
+        //MENU
         do {
 
             System.out.println("MENU");
@@ -44,10 +45,8 @@ public class Main {
     }
 
 
-
-    public static void clasificacionGeneral(String url,
-                                            String usuario,
-                                            String password) {
+    //METODO PARA CLASFICACION GENERAL
+    public static void clasificacionGeneral(String url, String usuario, String password) {
 
         try (Connection conexion = DriverManager.getConnection(url, usuario, password);
              Statement st = conexion.createStatement()) {
@@ -64,6 +63,7 @@ public class Main {
 
             ResultSet rs = st.executeQuery(sql);
 
+            //MOSTRAMOS DATOS
             while (rs.next()) {
 
                 String nombre = rs.getString("NOMBRE");
@@ -79,9 +79,8 @@ public class Main {
     }
 
 
-    public static void clasificacionEquipos(String url,
-                                            String usuario,
-                                            String password) {
+    //metodo Clasificacion equipos
+    public static void clasificacionEquipos(String url,String usuario,String password) {
 
         try (Connection conexion = DriverManager.getConnection(url, usuario, password);
              Statement st = conexion.createStatement()) {
@@ -127,7 +126,9 @@ public class Main {
                             "FETCH FIRST 3 ROWS ONLY";
 
             ResultSet rs = st.executeQuery(sql);
-
+            
+            //MOSTRAR DATOS (mostrara solo los 3 mejores por el fetch first 3 rows only
+            
             while (rs.next()) {
 
                 int numero = rs.getInt("numero");
